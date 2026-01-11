@@ -54,7 +54,47 @@ function search(){
 function wa(){
   window.open("https://wa.me/917689847248","_blank");
 }
-</script>
+</<script>
+const orders = {
+  "PJ-260111-001": {
+    product: "Photo Bracelet",
+    courier: "BlueDart",
+    expected: "15 Jan 2026",
+    status: ["confirmed", "processing"]
+  },
+
+  "PJ-260111-002": {
+    product: "Photo Ring",
+    courier: "DTDC",
+    expected: "17 Jan 2026",
+    status: ["confirmed"]
+  }
+};
+
+function searchOrder() {
+  const orderId = document.getElementById("orderId").value.trim();
+  if (!orders[orderId]) {
+    alert("Order ID not found");
+    return;
+  }
+
+  const order = orders[orderId];
+  document.getElementById("product").innerText = order.product;
+  document.getElementById("courier").innerText = order.courier;
+  document.getElementById("expected").innerText = order.expected;
+
+  document.getElementById("confirmed").style.color = "green";
+  if (order.status.includes("processing"))
+    document.getElementById("processing").style.color = "green";
+  if (order.status.includes("shipped"))
+    document.getElementById("shipped").style.color = "green";
+  if (order.status.includes("out"))
+    document.getElementById("out").style.color = "green";
+  if (order.status.includes("delivered"))
+    document.getElementById("delivered").style.color = "green";
+}
+</script>>
 
 </body>
 </html>
+

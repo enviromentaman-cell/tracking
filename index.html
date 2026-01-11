@@ -1,68 +1,58 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-<title>Photo Jewel – Order Tracking</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body{font-family:Arial;background:#f2f3f5;padding:15px}
-.card{background:#fff;padding:15px;border-radius:8px;margin-bottom:15px}
-h2{color:#2874f0}
-input{width:100%;padding:10px;font-size:16px;margin-top:8px}
-button{width:100%;padding:12px;background:#2874f0;color:#fff;
-border:none;border-radius:5px;font-size:16px;margin-top:10px}
-.done{color:green;font-weight:bold}
-.pending{color:#999}
-.whatsapp{
-background:#25D366;color:#fff;text-align:center;
-padding:12px;border-radius:6px;text-decoration:none;
-display:block;font-size:16px;margin-top:15px
-}
-</style>
+  <title>Photo Jewel – Order Tracking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body{font-family:Arial;background:#f3f5f7;padding:15px}
+    .card{background:#fff;padding:15px;border-radius:10px;margin-bottom:15px}
+    h2{color:#1a73e8}
+    input{width:100%;padding:10px;font-size:16px;margin-top:10px}
+    button{width:100%;padding:12px;margin-top:10px;font-size:16px;
+      background:#25D366;color:#fff;border:none;border-radius:8px}
+    .step{margin:6px 0;font-size:15px}
+    .done{color:green;font-weight:bold}
+    .pending{color:#999}
+  </style>
 </head>
 
 <body>
 
 <div class="card">
-<h2>📦 Photo Jewel – Order Tracking</h2>
+  <h2>📦 Photo Jewel – Order Tracking</h2>
 
-<label><b>Enter Order ID</b></label>
-<input id="oid" placeholder="Example: PJ1025">
-<button onclick="track()">Track Order</button>
+  <label><b>Enter Order ID</b></label>
+  <input id="oid" placeholder="Ex: PJ1025">
+  <button onclick="search()">Search Order</button>
 </div>
 
-<div id="result"></div>
+<div class="card" id="result" style="display:none">
+  <p><b>Order ID:</b> <span id="rid"></span></p>
+  <p><b>Product:</b> Photo Bracelet</p>
+  <p><b>Status:</b> <span id="status"></span></p>
+
+  <div class="step done">✔ Order Confirmed</div>
+  <div class="step done">✔ Processing</div>
+  <div class="step pending" id="ship">⏳ Shipped</div>
+  <div class="step pending" id="del">⏳ Delivered</div>
+
+  <button onclick="wa()">📲 Contact on WhatsApp</button>
+</div>
 
 <script>
-function track(){
-let id=document.getElementById("oid").value;
-let r=document.getElementById("result");
-
-if(id==="PJ1025"){
-r.innerHTML=`
-<div class="card">
-<b>Order ID:</b> PJ1025<br>
-<b>Product:</b> Photo Bracelet<br>
-<b>Courier:</b> BlueDart<br>
-<b>Expected Delivery:</b> 18 Jan 2026
-</div>
-
-<div class="card">
-<div class="done">✔ Order Confirmed</div>
-<div class="done">✔ Processing</div>
-<div class="pending">⏳ Shipped</div>
-<div class="pending">⏳ Out for Delivery</div>
-<div class="pending">⏳ Delivered</div>
-</div>
-
-<a class="whatsapp"
-href="https://wa.me/917689847248">
-📞 Contact on WhatsApp
-</a>
-`;
-}else{
-r.innerHTML=`<div class="card">❌ Order ID not found</div>`;
+function search(){
+  let o=document.getElementById("oid").value;
+  if(o=="PJ1025"){
+    document.getElementById("result").style.display="block";
+    document.getElementById("rid").innerText=o;
+    document.getElementById("status").innerText="Processing";
+  }else{
+    alert("❌ Order ID not found");
+  }
 }
+
+function wa(){
+  window.open("https://wa.me/917689847248","_blank");
 }
 </script>
 
